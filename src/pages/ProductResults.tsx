@@ -1,10 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { filterProducts, Product } from '@/lib/data';
+import { Product } from '@/lib/data';
 import ProductCard from '@/components/ProductFinder/ProductCard';
 import { ArrowLeft, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { fetchWooCommerceProducts, filterWooCommerceProducts } from '@/services/woocommerceService';
 
 const ProductResults: React.FC = () => {
   const location = useLocation();
@@ -13,16 +14,30 @@ const ProductResults: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
-    // Simulate loading
-    setIsLoading(true);
+    const loadProducts = async () => {
+      setIsLoading(true);
+      
+      try {
+        const selections = location.state?.selections || {};
+        
+        // Fetch products from WooCommerce
+        const allProducts = await fetchWooCommerceProducts();
+        
+        // Filter products based on selections
+        const filteredProducts = filterWooCommerceProducts(allProducts, selections);
+        
+        // Brief delay to ensure loading state is visible
+        setTimeout(() => {
+          setProducts(filteredProducts);
+          setIsLoading(false);
+        }, 800);
+      } catch (error) {
+        console.error('Error loading products:', error);
+        setIsLoading(false);
+      }
+    };
     
-    const selections = location.state?.selections || {};
-    
-    setTimeout(() => {
-      const filteredProducts = filterProducts(selections);
-      setProducts(filteredProducts);
-      setIsLoading(false);
-    }, 1000);
+    loadProducts();
   }, [location.state]);
   
   const handleBackToWizard = () => {

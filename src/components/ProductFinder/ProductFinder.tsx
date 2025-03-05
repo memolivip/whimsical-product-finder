@@ -1,18 +1,48 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { questions } from '@/lib/data';
 import WizardStep from './WizardStep';
 import ProgressIndicator from './ProgressIndicator';
 import { ArrowLeft, ArrowRight, RotateCcw } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { toast } from 'sonner';
+import { Question } from '@/lib/data';
+import { fetchWizardQuestions } from '@/services/woocommerceService';
 
 const ProductFinder: React.FC = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(0);
   const [selections, setSelections] = useState<Record<string, string>>({});
   const [direction, setDirection] = useState<'forward' | 'backward'>('forward');
+  const [questions, setQuestions] = useState<Question[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  useEffect(() => {
+    const loadQuestions = async () => {
+      try {
+        setIsLoading(true);
+        const fetchedQuestions = await fetchWizardQuestions();
+        setQuestions(fetchedQuestions);
+      } catch (error) {
+        console.error('Error loading wizard questions:', error);
+        toast.error('Sihirbaz soruları yüklenemedi');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadQuestions();
+  }, []);
+  
+  if (isLoading || questions.length === 0) {
+    return (
+      <div className="wizard-container">
+        <div className="min-h-[300px] flex items-center justify-center">
+          <div className="w-12 h-12 border-4 border-muted border-t-primary rounded-full animate-spin"></div>
+        </div>
+      </div>
+    );
+  }
   
   const currentQuestion = questions[currentStep];
   const isLastStep = currentStep === questions.length - 1;

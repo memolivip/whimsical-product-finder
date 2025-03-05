@@ -2,11 +2,23 @@
 import React from 'react';
 import ProductFinder from '@/components/ProductFinder/ProductFinder';
 import { motion } from 'framer-motion';
+import { Settings } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4">
       <div className="max-w-7xl mx-auto">
+        <div className="flex justify-end mb-2">
+          <Link 
+            to="/admin" 
+            className="text-sm text-muted-foreground hover:text-foreground flex items-center space-x-1"
+          >
+            <Settings className="h-4 w-4" />
+            <span>Yönetim Paneli</span>
+          </Link>
+        </div>
+        
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
