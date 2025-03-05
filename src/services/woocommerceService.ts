@@ -34,23 +34,31 @@ interface WooCommerceProduct {
   }>;
 }
 
+// WooCommerce API anahtar ve gizli anahtarınızı burada tanımlayın
+// Bu bilgileri WordPress admin panelinden WooCommerce > Ayarlar > Gelişmiş > REST API kısmından alabilirsiniz
+const WOOCOMMERCE_URL = 'https://your-woocommerce-site.com/wp-json/wc/v3';
+const CONSUMER_KEY = 'your_consumer_key';
+const CONSUMER_SECRET = 'your_consumer_secret';
+
 export const fetchWooCommerceProducts = async (): Promise<Product[]> => {
   try {
-    // In a real implementation, this would be an actual API call to the WooCommerce REST API
-    // For example:
-    // const response = await fetch('/wp-json/wc/v3/products', {
-    //   headers: {
-    //     'Authorization': 'Basic ' + btoa(consumerKey + ':' + consumerSecret)
-    //   }
-    // });
+    // WooCommerce API'sine gerçek bir istek yap
+    const response = await fetch(`${WOOCOMMERCE_URL}/products?per_page=100`, {
+      headers: {
+        'Authorization': 'Basic ' + btoa(CONSUMER_KEY + ':' + CONSUMER_SECRET)
+      }
+    });
     
-    // For now, we'll simulate a delay and return empty products
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    if (!response.ok) {
+      throw new Error('WooCommerce API isteği başarısız: ' + response.status);
+    }
     
-    // This is where you'd transform WooCommerce products to our app's format
-    return [];
+    const wcProducts: WooCommerceProduct[] = await response.json();
+    
+    // WooCommerce ürünlerini uygulamamızın formatına dönüştür
+    return wcProducts.map(wcProduct => mapWooCommerceProduct(wcProduct));
   } catch (error) {
-    console.error('Error fetching WooCommerce products:', error);
+    console.error('WooCommerce ürünlerini çekerken hata oluştu:', error);
     return [];
   }
 };
@@ -75,12 +83,12 @@ export const mapWooCommerceProduct = (wcProduct: WooCommerceProduct): Product =>
 
 export const fetchWizardQuestions = async (): Promise<Question[]> => {
   try {
-    // In a real implementation, this would fetch questions from your backend/admin settings
-    // For now, we'll return the current questions from the data file
+    // Gerçek uygulamada, soruları backend/admin ayarlarından çekebilirsiniz
+    // Şimdilik veri dosyasından mevcut soruları döndürüyoruz
     const { questions } = await import('@/lib/data');
     return questions;
   } catch (error) {
-    console.error('Error fetching wizard questions:', error);
+    console.error('Sihirbaz sorularını çekerken hata oluştu:', error);
     return [];
   }
 };

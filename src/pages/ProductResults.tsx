@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Product } from '@/lib/data';
@@ -6,6 +5,7 @@ import ProductCard from '@/components/ProductFinder/ProductCard';
 import { ArrowLeft, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fetchWooCommerceProducts, filterWooCommerceProducts } from '@/services/woocommerceService';
+import { toast } from 'sonner';
 
 const ProductResults: React.FC = () => {
   const location = useLocation();
@@ -20,19 +20,17 @@ const ProductResults: React.FC = () => {
       try {
         const selections = location.state?.selections || {};
         
-        // Fetch products from WooCommerce
+        // WooCommerce'dan ürünleri çek
         const allProducts = await fetchWooCommerceProducts();
         
-        // Filter products based on selections
+        // Seçimlere göre ürünleri filtrele
         const filteredProducts = filterWooCommerceProducts(allProducts, selections);
         
-        // Brief delay to ensure loading state is visible
-        setTimeout(() => {
-          setProducts(filteredProducts);
-          setIsLoading(false);
-        }, 800);
+        setProducts(filteredProducts);
+        setIsLoading(false);
       } catch (error) {
-        console.error('Error loading products:', error);
+        console.error('Ürünleri yüklerken hata oluştu:', error);
+        toast.error('Ürünler yüklenirken bir hata oluştu');
         setIsLoading(false);
       }
     };
