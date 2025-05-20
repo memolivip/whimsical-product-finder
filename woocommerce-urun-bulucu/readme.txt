@@ -1,7 +1,7 @@
 
 === WooCommerce Ürün Bulucu ===
 Contributors: yourname
-Tags: woocommerce, product finder, wizard, product filter
+Tags: woocommerce, product finder, wizard, product filter, urun bulucu
 Requires at least: 5.6
 Tested up to: 6.4
 Requires PHP: 7.3
@@ -23,14 +23,17 @@ WooCommerce Ürün Bulucu, müşterilerinizin ihtiyaçlarına en uygun ürünler
 * Tamamen WooCommerce ile entegre
 * Kolay yönetim arayüzü
 * Herhangi bir sayfada kısa kod ile kullanılabilir
+* Modern ve şık arayüz tasarımı
 
 == Installation ==
 
-1. Eklentiyi WordPress eklenti dizinine yükleyin
-2. WordPress admin panelinden eklentiyi etkinleştirin
-3. WooCommerce'in yüklü ve etkin olduğundan emin olun
-4. Ürün Bulucu > Ayarlar menüsünden eklentiyi yapılandırın
-5. Sihirbazı herhangi bir sayfada göstermek için [urun_bulucu] kısa kodunu kullanın
+1. Eklenti zip dosyasını indirin
+2. WordPress yönetim panelinden Eklentiler > Yeni Ekle > Eklenti Yükle bölümüne gidin
+3. "Dosya Seç" butonuna tıklayın ve indirdiğiniz zip dosyasını seçin
+4. "Şimdi Yükle" butonuna tıklayın ve ardından eklentiyi etkinleştirin
+5. WooCommerce'in yüklü ve etkin olduğundan emin olun
+6. Ürün Bulucu > Ayarlar menüsünden eklentiyi yapılandırın
+7. Sihirbazı herhangi bir sayfada göstermek için [urun_bulucu] kısa kodunu kullanın
 
 == Frequently Asked Questions ==
 
@@ -46,11 +49,16 @@ Evet, admin panelinden istediğiniz soruları ve seçenekleri ekleyebilir, düze
 
 [urun_bulucu] kısa kodunu herhangi bir sayfaya ekleyerek sihirbazı görüntüleyebilirsiniz.
 
+= API bağlantısı nasıl yapılır? =
+
+WooCommerce > Ayarlar > Gelişmiş > REST API bölümünden bir API anahtarı oluşturun ve bu anahtarı eklenti ayarlarında belirtin.
+
 == Screenshots ==
 
 1. Ürün Bulucu Sihirbazı ön yüz görünümü
 2. Sonuçlar sayfası
 3. Admin yönetim paneli
+4. Mobil görünüm
 
 == Changelog ==
 

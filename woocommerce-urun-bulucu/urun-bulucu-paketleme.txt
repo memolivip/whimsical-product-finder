@@ -1,0 +1,28 @@
+
+# WooCommerce Ürün Bulucu Eklenti Paketleme Yönergeleri
+
+Bu eklentiyi WordPress sitenize yüklemek için aşağıdaki adımları izleyin:
+
+1. Tüm dosyaları içeren "woocommerce-urun-bulucu" klasörünü zip dosyası haline getirin:
+   - Windows: Klasöre sağ tıklayın > "Gönder" > "Sıkıştırılmış (zip) klasör"
+   - Mac: Klasöre sağ tıklayın > "xxx'i Sıkıştır"
+   - Linux: `zip -r woocommerce-urun-bulucu.zip woocommerce-urun-bulucu/` komutunu kullanın
+
+2. Oluşturduğunuz zip dosyasını WordPress admin panelinden yükleyin:
+   - WordPress yönetim paneline giriş yapın
+   - "Eklentiler" > "Yeni Ekle" > "Eklenti Yükle" bölümüne gidin
+   - "Dosya Seç" butonuna tıklayın ve oluşturduğunuz zip dosyasını seçin
+   - "Şimdi Yükle" butonuna tıklayın ve ardından eklentiyi etkinleştirin
+
+3. Eklenti yapılandırması:
+   - "Ürün Bulucu" menüsüne gidin
+   - WooCommerce API ayarlarınızı girin
+   - Sihirbaz sorularınızı ve seçeneklerinizi özelleştirin
+   - Değişiklikleri kaydedin
+
+4. Ürün Bulucu'yu sayfanıza ekleyin:
+   - İstediğiniz sayfayı düzenleyin
+   - [urun_bulucu] kısa kodunu sayfaya ekleyin
+   - Sayfayı kaydedin ve önizleyin
+
+Teknik sorunlar veya destek için info@example.com adresine e-posta gönderin.
