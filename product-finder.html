@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Bulucu Sihirbazı</title>
+    <link rel="stylesheet" href="product-finder.css">
+</head>
+<body>
+    <div class="min-h-screen bg-gradient-to-b from-blue-50 to-white py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <span class="chip bg-blue-100 text-blue-800 mb-3">WooCommerce</span>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Ürün Bulma Sihirbazı</h1>
+                <p class="text-muted-foreground max-w-2xl mx-auto text-lg">
+                    İhtiyacınıza uygun ürünleri bulmak için birkaç soruyu yanıtlayın.
+                    Size en uygun ürünleri anında gösterelim.
+                </p>
+            </div>
+            
+            <!-- Wizard Container -->
+            <div class="wizard-container">
+                <!-- Progress Indicator -->
+                <div class="progress-indicator">
+                    <div class="step-indicator active">1</div>
+                    <div class="step-line"></div>
+                    <div class="step-indicator">2</div>
+                    <div class="step-line"></div>
+                    <div class="step-indicator">3</div>
+                </div>
+                
+                <!-- Wizard Content -->
+                <div class="wizard-content">
+                    <div class="wizard-step active" id="step-1">
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl md:text-3xl font-bold mb-3">Hangi ürün kategorisi ile ilgileniyorsunuz?</h2>
+                            <p class="text-muted-foreground max-w-xl mx-auto">Sizin için en uygun ürünleri bulmamıza yardımcı olun.</p>
+                        </div>
+                        
+                        <div class="options-grid">
+                            <div class="option-card" data-option="electronics">
+                                <div class="option-image">
+                                    <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?w=500&h=350&q=80" alt="Elektronik">
+                                </div>
+                                <div class="option-text">
+                                    <span class="font-medium">Elektronik</span>
+                                </div>
+                            </div>
+                            
+                            <div class="option-card" data-option="clothing">
+                                <div class="option-image">
+                                    <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=500&h=350&q=80" alt="Giyim">
+                                </div>
+                                <div class="option-text">
+                                    <span class="font-medium">Giyim</span>
+                                </div>
+                            </div>
+                            
+                            <div class="option-card" data-option="home">
+                                <div class="option-image">
+                                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?w=500&h=350&q=80" alt="Ev & Yaşam">
+                                </div>
+                                <div class="option-text">
+                                    <span class="font-medium">Ev & Yaşam</span>
+                                </div>
+                            </div>
+                            
+                            <div class="option-card" data-option="sports">
+                                <div class="option-image">
+                                    <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&h=350&q=80" alt="Spor & Outdoor">
+                                </div>
+                                <div class="option-text">
+                                    <span class="font-medium">Spor & Outdoor</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wizard-step" id="step-2" style="display: none;">
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl md:text-3xl font-bold mb-3">Fiyat aralığınız nedir?</h2>
+                            <p class="text-muted-foreground max-w-xl mx-auto">Bütçenize uygun ürünleri göstermeye çalışacağız.</p>
+                        </div>
+                        
+                        <div class="options-grid">
+                            <div class="option-card" data-option="budget">
+                                <div class="option-text">
+                                    <span class="font-medium">Ekonomik</span>
+                                </div>
+                            </div>
+                            
+                            <div class="option-card" data-option="mid">
+                                <div class="option-text">
+                                    <span class="font-medium">Orta Seviye</span>
+                                </div>
+                            </div>
+                            
+                            <div class="option-card" data-option="premium">
+                                <div class="option-text">
+                                    <span class="font-medium">Premium</span>
+                                </div>
+                            </div>
+                            
+                            <div class="option-card" data-option="any">
+                                <div class="option-text">
+                                    <span class="font-medium">Fark Etmez</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="wizard-step" id="step-3" style="display: none;">
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl md:text-3xl font-bold mb-3">Ürünü ne amaçla kullanacaksınız?</h2>
+                            <p class="text-muted-foreground max-w-xl mx-auto">İhtiyacınıza en uygun ürünleri önerebilmemiz için bize biraz bilgi verin.</p>
+                        </div>
+                        
+                        <div class="options-grid">
+                            <div class="option-card" data-option="personal">
+                                <div class="option-text">
+                                    <span class="font-medium">Kişisel Kullanım</span>
+                                </div>
+                            </div>
+                            
+                            <div class="option-card" data-option="gift">
+                                <div class="option-text">
+                                    <span class="font-medium">Hediye</span>
+                                </div>
+                            </div>
+                            
+                            <div class="option-card" data-option="professional">
+                                <div class="option-text">
+                                    <span class="font-medium">Profesyonel Kullanım</span>
+                                </div>
+                            </div>
+                            
+                            <div class="option-card" data-option="other">
+                                <div class="option-text">
+                                    <span class="font-medium">Diğer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Results Section -->
+                    <div class="wizard-results" id="results" style="display: none;">
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl md:text-3xl font-bold mb-3">Ürün Sonuçları</h2>
+                            <p class="text-muted-foreground">Seçimlerinize göre önerilen ürünler</p>
+                        </div>
+                        
+                        <div class="products-grid">
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&q=80" alt="Kulaklık">
+                                </div>
+                                <div class="product-details">
+                                    <h3 class="product-title">Kablosuz Kulaklık</h3>
+                                    <p class="product-description">Yüksek kaliteli ses deneyimi sunan kablosuz kulaklık</p>
+                                    <div class="product-attributes">
+                                        <span class="attribute-tag">Bluetooth</span>
+                                        <span class="attribute-tag">Noise Cancelling</span>
+                                    </div>
+                                    <div class="product-footer">
+                                        <span class="product-price">₺299</span>
+                                        <button class="add-to-cart-button">🛒</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&h=400&q=80" alt="Spor Ayakkabı">
+                                </div>
+                                <div class="product-details">
+                                    <h3 class="product-title">Koşu Ayakkabısı</h3>
+                                    <p class="product-description">Konforlu ve dayanıklı koşu ayakkabısı</p>
+                                    <div class="product-attributes">
+                                        <span class="attribute-tag">Nefes Alabilir</span>
+                                        <span class="attribute-tag">Hafif</span>
+                                    </div>
+                                    <div class="product-footer">
+                                        <span class="product-price">₺599</span>
+                                        <button class="add-to-cart-button">🛒</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="product-card">
+                                <div class="product-image">
+                                    <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=400&h=400&q=80" alt="Kahve Makinesi">
+                                </div>
+                                <div class="product-details">
+                                    <h3 class="product-title">Espresso Makinesi</h3>
+                                    <p class="product-description">Ev tipi profesyonel espresso makinesi</p>
+                                    <div class="product-attributes">
+                                        <span class="attribute-tag">15 Bar</span>
+                                        <span class="attribute-tag">Otomatik</span>
+                                    </div>
+                                    <div class="product-footer">
+                                        <span class="product-price">₺1,299</span>
+                                        <button class="add-to-cart-button">🛒</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Controls -->
+                <div class="wizard-controls">
+                    <div class="left-controls">
+                        <button class="control-btn" id="prev-btn" disabled>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="m15 18-6-6 6-6"/>
+                            </svg>
+                        </button>
+                        <button class="control-btn" id="reset-btn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/>
+                                <path d="M21 3v5h-5"/>
+                                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/>
+                                <path d="M3 21v-5h5"/>
+                            </svg>
+                        </button>
+                    </div>
+                    
+                    <div class="step-counter">
+                        <span id="current-step">1</span> / <span id="total-steps">3</span>
+                    </div>
+                    
+                    <button class="control-btn next-btn" id="next-btn" disabled>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m9 18 6-6-6-6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Basit JavaScript işlevselliği
+        let currentStep = 1;
+        const totalSteps = 3;
+        let selections = {};
+
+        // DOM elementleri
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const currentStepSpan = document.getElementById('current-step');
+        const stepIndicators = document.querySelectorAll('.step-indicator');
+        const wizardSteps = document.querySelectorAll('.wizard-step');
+        const optionCards = document.querySelectorAll('.option-card');
+        const resultsSection = document.getElementById('results');
+
+        // Seçenek kartları için event listener
+        optionCards.forEach(card => {
+            card.addEventListener('click', function() {
+                const stepElement = this.closest('.wizard-step');
+                const stepId = stepElement.id;
+                const option = this.dataset.option;
+                
+                // Önceki seçimi temizle
+                stepElement.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+                
+                // Yeni seçimi işaretle
+                this.classList.add('selected');
+                
+                // Seçimi kaydet
+                selections[stepId] = option;
+                
+                // Next butonunu aktif et
+                nextBtn.disabled = false;
+                
+                // Otomatik ilerleme (500ms sonra)
+                setTimeout(() => {
+                    if (currentStep < totalSteps) {
+                        nextStep();
+                    } else {
+                        showResults();
+                    }
+                }, 500);
+            });
+        });
+
+        // Sonraki adım
+        function nextStep() {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateUI();
+            }
+        }
+
+        // Önceki adım
+        function prevStep() {
+            if (currentStep > 1) {
+                currentStep--;
+                updateUI();
+            }
+        }
+
+        // Sıfırla
+        function resetWizard() {
+            currentStep = 1;
+            selections = {};
+            
+            // Tüm seçimleri temizle
+            optionCards.forEach(card => card.classList.remove('selected'));
+            
+            // Sonuçları gizle
+            resultsSection.style.display = 'none';
+            
+            updateUI();
+        }
+
+        // Sonuçları göster
+        function showResults() {
+            wizardSteps.forEach(step => step.style.display = 'none');
+            resultsSection.style.display = 'block';
+            
+            // Progress indicator'ı gizle
+            document.querySelector('.progress-indicator').style.display = 'none';
+            document.querySelector('.wizard-controls').style.display = 'none';
+        }
+
+        // UI güncelle
+        function updateUI() {
+            // Adım göstergelerini güncelle
+            stepIndicators.forEach((indicator, index) => {
+                indicator.classList.remove('active', 'completed');
+                if (index + 1 === currentStep) {
+                    indicator.classList.add('active');
+                } else if (index + 1 < currentStep) {
+                    indicator.classList.add('completed');
+                    indicator.innerHTML = '✓';
+                } else {
+                    indicator.innerHTML = index + 1;
+                }
+            });
+
+            // Wizard adımlarını güncelle
+            wizardSteps.forEach((step, index) => {
+                step.style.display = index + 1 === currentStep ? 'block' : 'none';
+            });
+
+            // Buton durumlarını güncelle
+            prevBtn.disabled = currentStep === 1;
+            nextBtn.disabled = !selections[`step-${currentStep}`];
+            
+            // Adım sayacını güncelle
+            currentStepSpan.textContent = currentStep;
+            
+            // Progress indicator ve controls'ı göster
+            document.querySelector('.progress-indicator').style.display = 'flex';
+            document.querySelector('.wizard-controls').style.display = 'flex';
+        }
+
+        // Event listener'lar
+        nextBtn.addEventListener('click', nextStep);
+        prevBtn.addEventListener('click', prevStep);
+        resetBtn.addEventListener('click', resetWizard);
+
+        // Başlangıç durumunu ayarla
+        updateUI();
+    </script>
+</body>
+</html>
